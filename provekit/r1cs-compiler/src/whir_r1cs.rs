@@ -81,7 +81,7 @@ where
             two_to_one_params: Default::default(),
             soundness_type: SoundnessType::ConjectureList,
             _pow_parameters: Default::default(),
-            starting_log_inv_rate: 1,
+            starting_log_inv_rate: 6,
             batch_size,
             deduplication_strategy: DeduplicationStrategy::Disabled,
             merkle_proof_strategy: MerkleProofStrategy::Uncompressed,
