@@ -75,7 +75,7 @@ where
         let whir_params = ProtocolParameters {
             initial_statement: true,
             security_level: 128,
-            pow_bits: default_max_pow(nv, 1),
+            pow_bits: 30,
             folding_factor: FoldingFactor::Constant(4),
             leaf_hash_params: Default::default(),
             two_to_one_params: Default::default(),
