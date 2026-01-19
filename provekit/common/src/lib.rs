@@ -8,7 +8,7 @@ pub mod runtime_hash;
 pub mod sha256;
 mod sparse_matrix;
 pub mod utils;
-mod verifier;
+pub mod verifier;
 mod whir_r1cs;
 pub mod witness;
 
