@@ -8,7 +8,7 @@ pub mod zk_utils;
 
 use {
     crate::FieldElement,
-    ark_ff::{BigInt, Field, PrimeField},
+    ark_ff::{BigInt, Field},
     ruint::{aliases::U256, uint},
     std::{
         fmt::{Display, Formatter, Result as FmtResult},

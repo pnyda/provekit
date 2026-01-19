@@ -10,13 +10,6 @@ use {crate::FieldElement, whir::whir::parameters::WhirConfig as GenericWhirConfi
 // Hash-specific type aliases
 // ============================================================================
 
-/// WHIR configuration for Skyscraper.
-pub type SkyscraperWhirConfig = GenericWhirConfig<
-    FieldElement,
-    crate::skyscraper::SkyscraperMerkleConfig,
-    crate::skyscraper::SkyscraperPoW,
->;
-
 /// WHIR configuration for SHA256.
 pub type Sha256WhirConfig =
     GenericWhirConfig<FieldElement, crate::sha256::Sha256MerkleConfig, crate::sha256::Sha256PoW>;
@@ -51,11 +44,6 @@ pub type Blake3WhirConfig =
 macro_rules! runtime_hash {
     ($hash_config:expr, | $merkle:ident, $pow:ident | $body:expr) => {
         match $hash_config {
-            $crate::HashConfig::Skyscraper => {
-                type $merkle = $crate::skyscraper::SkyscraperMerkleConfig;
-                type $pow = $crate::skyscraper::SkyscraperPoW;
-                $body
-            }
             $crate::HashConfig::Sha256 => {
                 type $merkle = $crate::sha256::Sha256MerkleConfig;
                 type $pow = $crate::sha256::Sha256PoW;

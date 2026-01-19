@@ -6,7 +6,7 @@
 // Alternative configurations available via --hash flag:
 use {
     crate::{
-        skyscraper::{SkyscraperMerkleConfig, SkyscraperPoW, SkyscraperSponge},
+        sha256::{Sha256MerkleConfig, Sha256PoW, Sha256Sponge},
         utils::{serde_hex, sumcheck::SumcheckIOPattern},
         witness::WitnessIOPattern,
         FieldElement,
@@ -19,9 +19,9 @@ use {
 };
 
 // Default hash configuration (Pure Skyscraper)
-type CurrentMerkleConfig = SkyscraperMerkleConfig;
-type CurrentPoW = SkyscraperPoW;
-type CurrentSponge = SkyscraperSponge;
+type CurrentMerkleConfig = Sha256MerkleConfig;
+type CurrentPoW = Sha256PoW;
+type CurrentSponge = Sha256Sponge;
 type CurrentDigest = FieldElement;
 
 // Export type aliases that other crates can use
@@ -48,14 +48,6 @@ where
     pub num_challenges: usize,
     pub whir_witness: GenericWhirConfig<FieldElement, MerkleConfig, PowStrategy>,
     pub whir_for_hiding_spartan: GenericWhirConfig<FieldElement, MerkleConfig, PowStrategy>,
-}
-
-// Default implementation for backward compatibility (uses Skyscraper)
-impl WhirR1CSScheme<CurrentMerkleConfig, CurrentPoW> {
-    #[instrument(skip_all)]
-    pub fn create_io_pattern(&self) -> IOPattern {
-        self.create_generic_io_pattern()
-    }
 }
 
 // Type-specific implementations for each hash algorithm

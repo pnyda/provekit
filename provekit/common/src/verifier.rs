@@ -1,5 +1,5 @@
 use {
-    crate::{hash_config::TypedHashConfig, whir_r1cs::WhirR1CSScheme, HashConfig},
+    crate::{whir_r1cs::WhirR1CSScheme, HashConfig},
     serde::{Deserialize, Serialize},
 };
 
@@ -9,8 +9,8 @@ use {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(bound = "")]
 pub struct Verifier<
-    MerkleConfig = crate::skyscraper::SkyscraperMerkleConfig,
-    PowStrategy = crate::skyscraper::SkyscraperPoW,
+    MerkleConfig = crate::sha256::Sha256MerkleConfig,
+    PowStrategy = crate::sha256::Sha256PoW,
 > where
     MerkleConfig: ark_crypto_primitives::merkle_tree::Config,
 {

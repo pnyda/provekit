@@ -12,8 +12,6 @@ repository.workspace = true
 default = []
 
 [dependencies]
-# Workspace crates
-skyscraper.workspace = true
 
 # Cryptography and proof systems
 ark-bn254.workspace = true
@@ -43,7 +41,6 @@ blake3.workspace = true
 tracing.workspace = true
 zerocopy.workspace = true
 zeroize.workspace = true
-zstd.workspace = true
 
 [lints]
 workspace = true
