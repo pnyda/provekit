@@ -9,10 +9,8 @@ use {
     rand08::Rng,
     serde::{Deserialize, Serialize},
     spongefish::{
-        codecs::arkworks_algebra::{
-            FieldDomainSeparator, FieldToUnitDeserialize, FieldToUnitSerialize,
-        },
-        DomainSeparator, ProofResult, ProverState, VerifierState,
+        codecs::arkworks_algebra::{FieldDomainSeparator, FieldToUnitDeserialize},
+        DomainSeparator, ProofResult, VerifierState,
     },
     std::borrow::Borrow,
 };
@@ -96,14 +94,6 @@ impl whir::whir::domainsep::DigestDomainSeparator<SkyscraperMerkleConfig>
 {
     fn add_digest(self, label: &str) -> Self {
         <Self as FieldDomainSeparator<FieldElement>>::add_scalars(self, 1, label)
-    }
-}
-
-impl whir::whir::utils::DigestToUnitSerialize<SkyscraperMerkleConfig>
-    for ProverState<SkyscraperSponge, FieldElement>
-{
-    fn add_digest(&mut self, digest: FieldElement) -> ProofResult<()> {
-        self.add_scalars(&[digest])
     }
 }
 

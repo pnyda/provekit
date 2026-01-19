@@ -1,8 +1,5 @@
 use {
-    crate::{
-        hash_config::TypedHashConfig, noir_proof_scheme::NoirProofScheme,
-        whir_r1cs::WhirR1CSScheme, HashConfig,
-    },
+    crate::{hash_config::TypedHashConfig, whir_r1cs::WhirR1CSScheme, HashConfig},
     serde::{Deserialize, Serialize},
 };
 
@@ -19,18 +16,4 @@ pub struct Verifier<
 {
     pub hash_config:      HashConfig,
     pub whir_for_witness: Option<WhirR1CSScheme<MerkleConfig, PowStrategy>>,
-}
-
-impl<MerkleConfig, PowStrategy> Verifier<MerkleConfig, PowStrategy>
-where
-    MerkleConfig: ark_crypto_primitives::merkle_tree::Config + TypedHashConfig,
-{
-    pub fn from_noir_proof_scheme(
-        noir_proof_scheme: NoirProofScheme<MerkleConfig, PowStrategy>,
-    ) -> Self {
-        Self {
-            hash_config:      MerkleConfig::HASH_CONFIG,
-            whir_for_witness: Some(noir_proof_scheme.whir_for_witness),
-        }
-    }
 }

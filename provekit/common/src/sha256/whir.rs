@@ -5,10 +5,7 @@
 
 use {
     crate::sha256::{Sha256Digest, Sha256MerkleConfig, Sha256Sponge},
-    spongefish::{
-        BytesToUnitDeserialize, BytesToUnitSerialize, DomainSeparator, ProofResult, ProverState,
-        VerifierState,
-    },
+    spongefish::{BytesToUnitDeserialize, DomainSeparator, ProofResult, VerifierState},
 };
 
 /// Implementation of DigestDomainSeparator for SHA256 Merkle with SHA256
@@ -19,18 +16,6 @@ impl whir::whir::domainsep::DigestDomainSeparator<Sha256MerkleConfig>
     fn add_digest(self, label: &str) -> Self {
         // SHA256 digest is 32 bytes
         self.absorb(32, label)
-    }
-}
-
-/// Implementation of DigestToUnitSerialize for SHA256 Merkle with SHA256
-/// Fiat-Shamir.
-impl whir::whir::utils::DigestToUnitSerialize<Sha256MerkleConfig>
-    for ProverState<Sha256Sponge, u8>
-{
-    fn add_digest(&mut self, digest: Sha256Digest) -> ProofResult<()> {
-        // Add the 32-byte digest directly to the SHA256 sponge
-        self.add_bytes(&digest.0)
-            .map_err(|_| spongefish::ProofError::SerializationError)
     }
 }
 

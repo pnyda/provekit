@@ -33,3 +33,4 @@ impl PartialEq for NoirWitnessGenerator {
             && self.witness_map == other.witness_map
     }
 }
+

@@ -3,7 +3,6 @@ mod digits;
 mod ram;
 mod scheduling;
 mod witness_builder;
-mod witness_generator;
 mod witness_io_pattern;
 
 use {
@@ -19,7 +18,6 @@ pub use {
     witness_builder::{
         ConstantTerm, ProductLinearTerm, SumTerm, WitnessBuilder, WitnessCoefficient,
     },
-    witness_generator::NoirWitnessGenerator,
     witness_io_pattern::WitnessIOPattern,
 };
 

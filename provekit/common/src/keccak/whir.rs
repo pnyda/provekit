@@ -5,10 +5,7 @@
 
 use {
     crate::keccak::{KeccakDigest, KeccakMerkleConfig, KeccakSponge},
-    spongefish::{
-        BytesToUnitDeserialize, BytesToUnitSerialize, DomainSeparator, ProofResult, ProverState,
-        VerifierState,
-    },
+    spongefish::{BytesToUnitDeserialize, DomainSeparator, ProofResult, VerifierState},
 };
 
 /// Implementation of DigestDomainSeparator for Keccak Merkle with Keccak
@@ -19,18 +16,6 @@ impl whir::whir::domainsep::DigestDomainSeparator<KeccakMerkleConfig>
     fn add_digest(self, label: &str) -> Self {
         // Keccak digest is 32 bytes
         self.absorb(32, label)
-    }
-}
-
-/// Implementation of DigestToUnitSerialize for Keccak Merkle with Keccak
-/// Fiat-Shamir.
-impl whir::whir::utils::DigestToUnitSerialize<KeccakMerkleConfig>
-    for ProverState<KeccakSponge, u8>
-{
-    fn add_digest(&mut self, digest: KeccakDigest) -> ProofResult<()> {
-        // Add the 32-byte digest directly to the Keccak sponge
-        self.add_bytes(&digest.0)
-            .map_err(|_| spongefish::ProofError::SerializationError)
     }
 }
 

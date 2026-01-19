@@ -1,20 +1,8 @@
 [workspace]
 resolver = "2"
 members = [
-  "skyscraper/fp-rounding",
-  "skyscraper/hla",
-  "skyscraper/block-multiplier",
-  "skyscraper/block-multiplier-codegen",
-  "skyscraper/core",
   "provekit/common",
-  "provekit/r1cs-compiler",
-  "provekit/prover",
   "provekit/verifier",
-  "tooling/cli",
-  "tooling/provekit-bench",
-  "tooling/provekit-gnark",
-  "tooling/verifier-server",
-  "ntt",
 ]
 exclude = [
   "playground/passport-input-gen",
@@ -104,7 +92,7 @@ primitive-types = "0.13.1"
 proptest = "1.6.0"
 quickcheck = "1.0.3"
 quickcheck_macros = "1.0.0"
-rand = "0.9.1"
+rand = { version = "0.9.1", default-features = false }
 rand08 = { package = "rand", version = "0.8" }
 rayon = "1.10.0"
 reqwest = "0.12.23"
@@ -130,28 +118,17 @@ zerocopy = "0.8.25"
 zeroize = "1.8.1"
 zstd = "0.13.3"
 
-# Noir language dependencies
-acir = { git = "https://github.com/noir-lang/noir", rev = "v1.0.0-beta.11" }
-bn254_blackbox_solver = { git = "https://github.com/noir-lang/noir", rev = "v1.0.0-beta.11" }
-nargo = { git = "https://github.com/noir-lang/noir", rev = "v1.0.0-beta.11" }
-nargo_cli = { git = "https://github.com/noir-lang/noir", rev = "v1.0.0-beta.11" }
-nargo_toml = { git = "https://github.com/noir-lang/noir", rev = "v1.0.0-beta.11" }
-noir_artifact_cli = { git = "https://github.com/noir-lang/noir", rev = "v1.0.0-beta.11" }
-noirc_abi = { git = "https://github.com/noir-lang/noir", rev = "v1.0.0-beta.11" }
-noirc_artifacts = { git = "https://github.com/noir-lang/noir", rev = "v1.0.0-beta.11" }
-noirc_driver = { git = "https://github.com/noir-lang/noir", rev = "v1.0.0-beta.11" }
-
 # Cryptography and proof systems
 ark-bn254 = { version = "0.5.0", default-features = false, features = [
   "scalar_field",
 ] }
-ark-crypto-primitives = { version = "0.5", features = ["merkle_tree", "parallel"] }
-ark-ff = { version = "0.5", features = ["asm", "std"] }
+ark-crypto-primitives = { version = "0.5", features = ["merkle_tree"] }
+ark-ff = { version = "0.5" }
 ark-poly = "0.5"
 ark-serialize = "0.5"
-ark-std = { version = "0.5", features = ["std"] }
-spongefish = { git = "https://github.com/arkworks-rs/spongefish", features = [
+ark-std = { version = "0.5" }
+spongefish = { path = "../spongefish/spongefish", features = [
   "arkworks-algebra",
-], rev = "ecb4f08373ed930175585c856517efdb1851fb47" }
-spongefish-pow = { git = "https://github.com/arkworks-rs/spongefish", rev = "ecb4f08373ed930175585c856517efdb1851fb47" }
-whir = { git = "https://github.com/WizardOfMenlo/whir/", features = ["tracing"], rev = "cf1599b56ff50e09142ebe6d2e2fbd86875c9986" }
+] }
+spongefish-pow = { path = "../spongefish/spongefish-pow" }
+whir = { path = "../whir" }

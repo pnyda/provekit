@@ -5,10 +5,7 @@
 
 use {
     crate::blake3::{Blake3Digest, Blake3MerkleConfig, Blake3Sponge},
-    spongefish::{
-        BytesToUnitDeserialize, BytesToUnitSerialize, DomainSeparator, ProofResult, ProverState,
-        VerifierState,
-    },
+    spongefish::{BytesToUnitDeserialize, DomainSeparator, ProofResult, VerifierState},
 };
 
 /// Implementation of DigestDomainSeparator for BLAKE3 Merkle with BLAKE3
@@ -19,18 +16,6 @@ impl whir::whir::domainsep::DigestDomainSeparator<Blake3MerkleConfig>
     fn add_digest(self, label: &str) -> Self {
         // BLAKE3 digest is 32 bytes
         self.absorb(32, label)
-    }
-}
-
-/// Implementation of DigestToUnitSerialize for BLAKE3 Merkle with BLAKE3
-/// Fiat-Shamir.
-impl whir::whir::utils::DigestToUnitSerialize<Blake3MerkleConfig>
-    for ProverState<Blake3Sponge, u8>
-{
-    fn add_digest(&mut self, digest: Blake3Digest) -> ProofResult<()> {
-        // Add the 32-byte digest directly to the BLAKE3 sponge
-        self.add_bytes(&digest.0)
-            .map_err(|_| spongefish::ProofError::SerializationError)
     }
 }
 

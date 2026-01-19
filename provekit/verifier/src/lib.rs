@@ -3,13 +3,15 @@ mod whir_r1cs;
 use {
     crate::whir_r1cs::WhirR1CSVerifier,
     anyhow::Result,
-    provekit_common::{NoirProof, Verifier, WhirDomainSep, WhirMerkleConfig, WhirVerifierState},
+    provekit_common::{
+        Verifier, WhirDomainSep, WhirMerkleConfig, WhirR1CSProof, WhirVerifierState,
+    },
     spongefish::{DomainSeparator, VerifierState},
     tracing::instrument,
 };
 
 pub trait Verify {
-    fn verify(&mut self, proof: &NoirProof) -> Result<()>;
+    fn verify(&mut self, proof: &[u8]) -> Result<()>;
 }
 
 /// Blanket implementation of `Verify` for all valid hash configurations.
@@ -24,14 +26,13 @@ where
     DomainSeparator<MerkleConfig::Sponge, MerkleConfig::Unit>: WhirDomainSep<MerkleConfig>,
 {
     #[instrument(skip_all)]
-    fn verify(&mut self, proof: &NoirProof) -> Result<()> {
+    fn verify(&mut self, transcript: &[u8]) -> Result<()> {
         self.whir_for_witness
             .take()
             .unwrap()
-            .verify(&proof.whir_r1cs_proof)?;
+            .verify(&WhirR1CSProof {
+                transcript: transcript.to_vec(),
+            })?;
         Ok(())
     }
 }
-
-#[cfg(test)]
-mod tests {}
