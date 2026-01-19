@@ -6,7 +6,7 @@ use {
 /// A verifier for a Noir Proof Scheme
 /// Generic over MerkleConfig and PowStrategy to support different hash
 /// algorithms.
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Copy, Clone, Serialize, Deserialize)]
 #[serde(bound = "")]
 pub struct Verifier<
     MerkleConfig = crate::sha256::Sha256MerkleConfig,

@@ -35,7 +35,7 @@ pub type WhirConfig = GenericWhirConfig<FieldElement, CurrentMerkleConfig, Curre
 pub type IOPattern = DomainSeparator<CurrentSponge, CurrentUnitType>;
 
 // Generic WhirR1CSScheme that works with any Merkle config and PoW strategy
-#[derive(Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Copy, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(bound = "")]
 pub struct WhirR1CSScheme<MerkleConfig = CurrentMerkleConfig, PowStrategy = CurrentPoW>
 where
