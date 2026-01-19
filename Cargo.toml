@@ -86,7 +86,7 @@ divan = { package = "codspeed-divan-compat", version = "3.0.1" }
 hex = "0.4.3"
 itertools = "0.14.0"
 paste = "1.0.15"
-postcard = { version = "1.1.1", features = ["use-std"] }
+postcard = { version = "1.1.1" }
 primitive-types = "0.13.1"
 proptest = "1.6.0"
 quickcheck = "1.0.3"
