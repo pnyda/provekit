@@ -130,3 +130,8 @@ spongefish = { path = "../spongefish/spongefish", features = [
 ] }
 spongefish-pow = { path = "../spongefish/spongefish-pow" }
 whir = { path = "../whir" }
+
+[patch.crates-io]
+ark-ff = { path = "../algebra/ff" }
+ark-serialize = { path = "../algebra/serialize" }
+ark-poly = { path = "../algebra/poly" }
