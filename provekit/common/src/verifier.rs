@@ -8,6 +8,7 @@ use {
 /// algorithms.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(bound = "")]
+#[repr(C)]
 pub struct Verifier<
     MerkleConfig = crate::sha256::Sha256MerkleConfig,
     PowStrategy = crate::sha256::Sha256PoW,

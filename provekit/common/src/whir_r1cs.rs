@@ -37,6 +37,7 @@ pub type IOPattern = DomainSeparator<CurrentSponge, CurrentUnitType>;
 // Generic WhirR1CSScheme that works with any Merkle config and PoW strategy
 #[derive(Clone, PartialEq, Serialize, Deserialize)]
 #[serde(bound = "")]
+#[repr(C)]
 pub struct WhirR1CSScheme<MerkleConfig = CurrentMerkleConfig, PowStrategy = CurrentPoW>
 where
     MerkleConfig: ark_crypto_primitives::merkle_tree::Config,
